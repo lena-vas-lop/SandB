@@ -9,6 +9,8 @@ public class CreatLevel : MonoBehaviour
 {
     public GameObject Block;
     private TMP_Text Text;
+    public TMP_Text LevelText;
+    public TMP_Text CountBlock;
     public GameObject Wool;
     public GameObject Eat;
     public Material[] ColorBlock;
@@ -28,7 +30,13 @@ public class CreatLevel : MonoBehaviour
     private float Delta;
     public void NextLevel()
     {
+        LevelText.text = "Level " + (level+1) + string.Empty + " finish!";
+        CountBlock.text = "";
         level++;
+        Invoke("nextlevel", 3);
+    }
+    private void nextlevel() 
+    {
         SceneManager.LoadScene(1);
     }
     void Awake()
@@ -68,15 +76,14 @@ public class CreatLevel : MonoBehaviour
                 PositionWool[i].x += DistanceBlock;
             }
             for (int i = 0; i < 5; i++)
-            {
-                
+            {                
                 if (random.Next(0, 21)>= 3)
                 {
                     GameObject Blok = Instantiate(Block, PositionBlock[i], Quaternion.identity) as GameObject;
                     Renderer _renderer = Blok.GetComponent<Renderer>();
                     _renderer.material = ColorBlock[random.Next(0, 4)];
                     TMP_Text number = Blok.GetComponentInChildren<TMP_Text>();
-                    number.text = random.Next(1, 5*level1) + string.Empty;
+                    number.text = random.Next(level1, 5*level1) + string.Empty;
                     PositionBlock[i].x += DistanceBlock;
                 }
             }

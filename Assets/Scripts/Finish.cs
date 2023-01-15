@@ -10,8 +10,7 @@ public class Finish : MonoBehaviour
     {
         if (collaider.TryGetComponent(out CreateSnake createSnake))
         {
-            CreatLevel.NextLevel();
-            
+            CreatLevel.NextLevel();            
         }
     }
 }
