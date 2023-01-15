@@ -17,10 +17,12 @@ public class CreateSnake : MonoBehaviour
     public GameObject Body;
     private List<Vector3> PositionBody = new List<Vector3>();
     public int CounterBlok;
-
+    private AudioSource audiosnake;
+    public AudioClip Audio;  
     private void Awake()
     {
         PositionBody.Add(HeadSnake.transform.position);
+        audiosnake = GetComponent<AudioSource>();
         AddSnake(SizeSnake);
     }
     void Update()
@@ -40,6 +42,7 @@ public class CreateSnake : MonoBehaviour
     }
     public void AddSnake(int Add)
     {
+        audiosnake.PlayOneShot(Audio);
         for (int i = 0; i < Add; i++)
         {
             GameObject New = Instantiate(Body, PositionBody[SizeSnakeStart-1] + new Vector3(SizeBody, 0f, 0f), Quaternion.identity);
@@ -49,9 +52,9 @@ public class CreateSnake : MonoBehaviour
         SizeSnakeStart += Add;
         TextSnake.text = SizeSnakeStart + string.Empty;
     }
-
     public void RemoveSnake(int Add)
     {
+        audiosnake.Play();
         if (SizeSnakeStart > Add)
         {
             for (int i = 0; i < Add; i++)

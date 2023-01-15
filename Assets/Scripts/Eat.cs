@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 public class Eat : MonoBehaviour
-{
+{    
     private void OnTriggerEnter(Collider collaider)
     {
         if (collaider.TryGetComponent(out CreateSnake createSnake))
